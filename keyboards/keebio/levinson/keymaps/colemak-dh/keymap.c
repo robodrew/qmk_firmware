@@ -8,14 +8,16 @@
 #define _QWERTY 0
 #define _COLEMAK 1
 #define _DVORAK 2
-#define _LOWER 3
-#define _RAISE 4
+#define _HALMAK 3
+#define _LOWER 14
+#define _RAISE 15
 #define _ADJUST 16
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   COLEMAK,
   DVORAK,
+  HALMAK,
   LOWER,
   RAISE,
   ADJUST,
@@ -77,6 +79,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ADJUST,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
 ),
 
+/* Halmak
+ * ,-----------------------------------------------------------------------------------.
+ * | Tab  |   W  |   L  |   R  |   B  |   Z  |   ;  |   Q  |   U  |   D  |   J  | Bksp |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * | Esc  |   S  |   H  |   N  |   T  |   ,  |   .  |   A  |   E  |   O  |   I  |  "   |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * | Shift|   F  |   M  |   V  |   C  |   /  |   G  |   P  |   X  |   K  |   Y  |Enter |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |Adjust| Ctrl | Alt  | GUI  |Lower |Space |Space |Raise | Left | Down |  Up  |Right |
+ * `-----------------------------------------------------------------------------------'
+ */
+[_HALMAK] = LAYOUT_ortho_4x12( \
+  KC_TAB,  KC_W,    KC_L,    KC_R,    KC_B,    KC_X,    KC_SCLN,    KC_Q,    KC_U,    KC_D,    KC_J, KC_BSPC, \
+  KC_ESC,  LGUI_T(KC_S),    LALT_T(KC_H),    LSFT_T(KC_N),    LCTL_T(KC_T),    KC_COMM,    KC_DOT,    RCTL_T(KC_A),    RSFT_T(KC_E),    LALT_T(KC_O),    RGUI_T(KC_I),    KC_QUOT, \
+  KC_LSFT, KC_F,    KC_M,    KC_V,    KC_C,    KC_SLSH,    KC_G,    KC_P,    KC_X,    KC_K,    KC_Y, KC_ENT , \
+  ADJUST,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
+),
+
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |   ~  |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  | Bksp |
@@ -127,7 +147,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_ADJUST] =  LAYOUT_ortho_4x12( \
   _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
   _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, DVORAK,  _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, HALMAK,  _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
 
